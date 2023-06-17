@@ -3,7 +3,9 @@ const cors = require('cors');
 const app = express();
 require('dotenv').config();
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://igorfurman.github.io/PlanYourTrip/' 
+}));
 
 
 const hotelsRouter = require('./api/hotels');
