@@ -1,8 +1,3 @@
-const express = require('express');
-const axios = require('axios');
-const router = express.Router();
-require('dotenv').config();
-
 router.get('/', async(req, res) => {
   try {
     const { query } = req.query;
@@ -14,6 +9,7 @@ router.get('/', async(req, res) => {
 
       while (url) {
         const response = await axios.get(url);
+        console.log(`Response data for ${query} + ${placeTypes[i]}:`, response.data);
         allResults.push(...response.data.results);
 
         if (response.data.next_page_token) {
@@ -29,9 +25,7 @@ router.get('/', async(req, res) => {
     res.send({ results: allResults });
   } catch (error) {
     console.error('Error searching Google Places API:', error);
+    console.log('Error details:', error.message, error.stack); 
     res.status(500).send('Error searching Google Places API');
   }
 })
-
-
-module.exports = router;
