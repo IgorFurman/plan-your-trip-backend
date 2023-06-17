@@ -5,8 +5,9 @@ const app = express();
 require('dotenv').config();
 
 app.use(cors({
-  origin: 'https://igorfurman.github.io/PlanYourTrip/' 
+  origin: '*'
 }));
+
 
 const hotelsRouter = require('./api/hotels');
 const restaurantsRouter = require('./api/restaurants');
@@ -18,5 +19,7 @@ app.use('/api/place/restaurants', restaurantsRouter);
 app.use('/api/place/attractions', attractionsRouter);
 app.use('/api/place/details', detailsRouter);
 
+
+process.env.DEBUG = 'express:*';
 
 app.listen(5000)
