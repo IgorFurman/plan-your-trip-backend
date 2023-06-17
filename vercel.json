@@ -1,19 +1,19 @@
 {
   "routes": [
     {
-      "src": "/api/place/attractions",
+      "src": "/api/attractions",
       "dest": "/api/attractions.js"
     },
     {
-      "src": "/api/place/hotels",
+      "src": "/api/hotels",
       "dest": "/api/hotels.js"
     },
     {
-      "src": "/api/place/restaurants",
+      "src": "/api/restaurants",
       "dest": "/api/restaurants.js"
     },
     {
-      "src": "/api/place/details",
+      "src": "/api/details",
       "dest": "/api/details.js"
     }
   ]
