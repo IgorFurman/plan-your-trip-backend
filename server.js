@@ -20,6 +20,6 @@ app.use('/api/place/attractions', attractionsRouter);
 app.use('/api/place/details', detailsRouter);
 
 
-process.env.DEBUG = 'express:*';
+
 
 app.listen(5000)

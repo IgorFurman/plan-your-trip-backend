@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "description": "backend for plan your trip",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node pages/api/server.js"
+    "start": "node api/server.js"
   },
   "repository": {
     "type": "git",
