@@ -18,3 +18,5 @@ app.use('/api/place/restaurants', restaurantsRouter);
 app.use('/api/place/attractions', attractionsRouter);
 app.use('/api/place/details', detailsRouter);
 
+
+app.listen(5000)
