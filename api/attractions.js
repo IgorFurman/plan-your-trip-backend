@@ -1,3 +1,8 @@
+const express = require('express');
+const axios = require('axios');
+const router = express.Router();
+require('dotenv').config();
+
 router.get('/', async(req, res) => {
   try {
     const { query } = req.query;
@@ -29,3 +34,4 @@ router.get('/', async(req, res) => {
     res.status(500).send('Error searching Google Places API');
   }
 })
+module.exports = router;
