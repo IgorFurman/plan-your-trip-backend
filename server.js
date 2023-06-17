@@ -22,4 +22,14 @@ app.use('/api/place/details', detailsRouter);
 
 
 
-app.listen(5000)
+module.exports = micro((req, res) => {
+  
+  if (req.method === 'OPTIONS') {
+    res.writeHead(200, { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE', 'Access-Control-Allow-Headers': 'Content-Type' });
+    res.end();
+    return;
+  }
+
+ 
+  return app(req, res);
+});
