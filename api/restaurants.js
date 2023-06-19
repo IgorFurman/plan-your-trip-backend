@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   try {
     const { query } = req.query;
     let allResults = [];
-    let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}+hotels&key=${process.env.GOOGLE_MAPS_API_KEY}&language=en`;
+    let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}+restaurants&key=${process.env.GOOGLE_MAPS_API_KEY}&language=en`;
 
     while (url) {
       const response = await axios.get(url);
