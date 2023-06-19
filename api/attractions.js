@@ -7,25 +7,24 @@ router.get('/', async (req, res) => {
   try {
     const { query } = req.query;
     const placeTypes = ['museum', 'park', 'art_gallery', 'church', 'zoo'];
-    const allResults = [];
+const allResults = [];
 
-    for (let i = 0; i < placeTypes.length; i++) {
-      let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}+${placeTypes[i]}&key=${process.env.GOOGLE_MAPS_API_KEY}&language=en`;
+await Promise.allSettled(placeTypes.map(async (placeType) => {
+    let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}+${placeType}&key=${process.env.GOOGLE_MAPS_API_KEY}&language=en`;
 
-      while (url) {
+    while (url) {
         const response = await axios.get(url);
-        console.log(`Response data for ${query} + ${placeTypes[i]}:`, response.data);
+       
         allResults.push(...response.data.results);
 
         if (response.data.next_page_token) {
-          url = `https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken=${response.data.next_page_token}&key=${process.env.GOOGLE_MAPS_API_KEY}`;
-          
-          await new Promise(resolve => setTimeout(resolve, 2000));
+            url = `https://maps.googleapis.com/maps/api/place/textsearch/json?pagetoken=${response.data.next_page_token}&key=${process.env.GOOGLE_MAPS_API_KEY}`;
+            await new Promise(resolve => setTimeout(resolve, 1000));
         } else {
-          url = null;
+            url = null;
         }
-      }
     }
+}));
 
     res.send({ results: allResults });
   } catch (error) {
